@@ -1,0 +1,32 @@
+name: build
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential cmake flex bison libreadline-dev
+
+      - name: Configure server
+        run: cmake -S . -B build
+
+      - name: Build server and tests
+        run: cmake --build build -j2
+
+      - name: Run CTest
+        run: ctest --test-dir build --output-on-failure
+
+      - name: Configure client
+        run: cmake -S rmdb_client -B build-client
+
+      - name: Build client
+        run: cmake --build build-client -j2
