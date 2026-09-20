@@ -1,6 +1,6 @@
 # RMDB Architecture
 
-本文档对公开仓库中的主要模块和执行路径做简要说明。更完整的设计说明见 `RMDB-Technical-Report.pdf`。
+本文档对公开仓库中的主要模块和执行路径做简要说明。更完整的设计说明见 [`RMDB-Technical-Report.md`](RMDB-Technical-Report.md)。
 
 ## 1. SQL 请求处理链路
 
